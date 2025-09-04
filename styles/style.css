@@ -1,5 +1,435 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
+/* Стили для десктопа */
+
+/* Основные стили */
 
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 60px;
+  font-family: 'IBM Plex mono', sans-serif;
+  background-image: var(--page-background-image);
+  background-position: center;
+  background-attachment: fixed;
+  background-color: var(--content-background-color, #000028);
+  color: var(--main-text-color);
+}
+
+/* Заголовок */
+
+.header {
+  display: grid;
+  block-size: max(100vh, 768px);
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr min-content 1fr;
+  color: var(--accent-color, #ff0070);
+  padding: 20px;
+}
+
+.header__theme-menu {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: baseline;
+  justify-self: center;
+  font-size: var(--base-font-size, 18px);
+  color: var(--button-text-color, #ff0070);
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: row;
+  inline-size: 230px;
+  justify-content: space-between;
+}
+
+.header__theme-menu-button {
+  background-color: transparent;
+  border: none;
+  text-transform: lowercase;
+  inline-size: 70px;
+}
+
+.header__theme-menu-button:hover {
+  border: 1px solid rgb(255 0 112 / 0.5);
+}
+
+.header__theme-menu-button:focus-visible {
+  outline: none;
+  border-bottom: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+}
+
+.header__theme-menu-button_active {
+  border: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+}
+
+.header__rec {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: baseline;
+  justify-self: end;
+  vertical-align: middle;
+  text-align: justify;
+  font-size: var(--base-font-size);
+  line-height: 25px;
+  font-weight: 400;
+}
+
+.header__rec::after {
+  display: inline-block;
+  content: '●';
+  text-shadow: 0 0 4px var(--accent-color, #ff0070);
+  font-size: 25px;
+  line-height: 75%;
+  border-block-start: var(--accent-border, #ff0070);
+  border-inline-end: var(--accent-border, #ff0070);
+  inline-size: 25px;
+  block-size: 25px;
+  text-align: center;
+}
+
+.main-title {
+  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  line-height: 90%;
+  font-weight: var(--bold-weight, 700);
+  margin-inline-start: -20px;
+  color: var(--title-color);
+  text-shadow: 4px 4px 0 var(--accent-color, #ff0070);
+}
+
+.header__text {
+  inline-size: 50%;
+  justify-self: end;
+  align-self: center;
+  align-content: center;
+  font-size: 18px;
+  font-weight: var(--bold-weight, 700);
+  background-color: var(--accent-color, #ff0070);
+  color: var(--header-text-color, #000028);
+  text-wrap: wrap;
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.header::after {
+  position: absolute;
+  content: '';
+  border-block-end: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  border-inline-start: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  inline-size: 25px;
+  block-size: 25px;
+  grid-row: 3;
+  grid-column: 1;
+  align-self: flex-end;
+  justify-self: start;
+}
+
+/* Основной контент */
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+  padding: 0 20px;
+  background-color: var(--content-background-color, #000028);
+}
+
+.content-block {
+  display: grid;
+  font-size: var(--base-font-size, 18px);
+  font-weight: var(--bold-weight, 700);
+  gap: 20px;
+}
+
+.content-block__title {
+  color: var(--block-title-color, #ff0070);
+  font-size: var(--base-font-size, 18px);
+}
+
+.why-is-difficult,
+.how-to {
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
+}
+
+.why-is-difficult .content-block__title {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.content-block-item__title {
+  background-color: var(--accent-color, #ff0070);
+  font-size: var(--base-font-size, 18px);
+  color: var(--header-text-color, #000028);
+}
+
+.content-block-item__text {
+  padding-block-start: 10px;
+  font-size: var(--base-font-size, 18px);
+  font-weight: 400;
+  line-height: 23.44px;
+}
+
+.what-decreases {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.what-decreases .content-block__title {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.what-decreases .content-block-item {
+  grid-row: 2;
+}
+
+.content-block-item .content-block-item {
+  padding-block-start: 20px;
+}
+
+h4.content-block-item__title {
+  font-weight: 400;
+}
+
+.content__link {
+  color: var(--link-color);
+  text-decoration: none;
+  text-shadow: 1px 1px var(--accent-color, #000028);
+}
+
+.content__link:hover {
+  border-block-end: 1px solid var(--link-color, #f1b2ce);
+}
+
+.content__link:focus-visible {
+  border: 1px solid var(--link-color, #f1b2ce);
+  outline: none;
+}
+
+/* Галерея изображений */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    'title title title'
+    'skies skies ice-cream'
+    'music books ice-cream'
+    'music street street';
+  gap: 20px;
+  padding: 20px 20px 0;
+}
+
+.gallery__image {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.skies {
+  grid-area: skies;
+}
+
+.ice-cream {
+  grid-area: ice-cream;
+}
+
+.music {
+  grid-area: music;
+}
+
+.street {
+  grid-area: street;
+}
+
+.books {
+  grid-area: books;
+}
+
+.gallery .content-block-item__title {
+  grid-area: title;
+}
+
+/* Подвал */
+
+.footer {
+  block-size: max(100vh, 768px);
+  color: var(--accent-color);
+  justify-items: center;
+  align-content: center;
+  position: relative;
+  padding: 20px;
+  background-color: var(--content-background-color, #000028);
+}
+
+.footer .main-title {
+  min-height: 100%;
+  align-content: center;
+  margin: 0;
+}
+
+.footer::before {
+  display: block;
+  position: absolute;
+  content: '';
+  align-self: start;
+  justify-self: end;
+  border-block-start: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  border-inline-end: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  inline-size: 25px;
+  block-size: 25px;
+}
+
+.footer::after {
+  display: block;
+  position: absolute;
+  content: '';
+  align-self: end;
+  justify-self: start;
+  border-block-end: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  border-inline-start: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  inline-size: 25px;
+  block-size: 25px;
+}
+
+/* Стили для лэптопа */
+
+@media (width <= 1024px) {
+  /* Заголовок */
+
+  .header {
+    block-size: max(100vh, 768px);
+  }
+
+  .header__theme-menu {
+    display: flex;
+    flex-direction: column;
+    inline-size: auto;
+    align-content: space-between;
+    align-self: center;
+    justify-self: end;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: column;
+    inline-size: auto;
+    block-size: 98px;
+    align-content: space-between;
+  }
+
+  /* Основной контент */
+
+  .content-block {
+    column-gap: 15px;
+  }
+
+  .content-block-item__text {
+    padding-inline-end: 5px;
+  }
+
+  .what-decreases {
+    row-gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .what-decreases .content-block__title {
+    grid-column: 1;
+    grid-row: 1;
+    inline-size: 20%;
+  }
+
+  .what-decreases .content-block-item {
+    grid-row: auto;
+  }
+
+  /* Подвал */
+
+  .footer {
+    block-size: max(100vh, 1024px);
+  }
+}
+
+/* Стили для смартфона */
+
+@media (width <= 768px) {
+  /* Общие стили */
+
+  .page {
+    gap: 40px;
+  }
+
+  /* Заголовок */
+
+  .header {
+    block-size: max(100vh, 668px);
+    padding: 10px;
+  }
+
+  .main-title {
+    margin: 0;
+    line-height: 90%;
+  }
+
+  .header__text {
+    inline-size: auto;
+  }
+
+  /* Основной контент */
+
+  .content {
+    gap: 50px;
+    padding: 0 15px 0 10px;
+  }
+
+  .content-block {
+    grid-template-columns: 1fr;
+    column-gap: 10px;
+    row-gap: 20px;
+  }
+
+  .what-decreases .content-block__title {
+    min-inline-size: 100%;
+  }
+
+  /* Галерея изображений */
+
+  .gallery {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'title'
+      'skies'
+      'ice-cream'
+      'music'
+      'books'
+      'street';
+    gap: 10px;
+    padding: 10px 15px 0 10px;
+  }
+
+  /* Подвал */
+
+  .footer {
+    block-size: max(100vh, 668px);
+    padding: 10px;
+  }
+}
+
+/* Стили для светлой темы по умолчанию */
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --page-background-image: url(../images/cover-image-light.png);
+    --accent-color: #ff8dcb;
+    --title-color: #ffc2e6;
+    --main-text-color: #353430;
+    --block-title-color: var(--main-text-color);
+    --button-text-color: var(--main-text-color);
+    --link-color: var(--main-text-color);
+    --content-background-color: #fff1f7;
+    --header-text-color: var(--main-text-color);
+    --accent-border: 1px solid var(--main-text-color);
+  }
 }
