@@ -23,3 +23,34 @@
 :root.theme-light .header__theme-menu-button:hover {
   border: 1px solid rgb(53 52 48 / 0.5);
 }
+
+/* Стили для светлой темы по умолчанию */
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --page-background-image: url(../images/cover-image-light.png);
+    --accent-color: #ff8dcb;
+    --title-color: #ffc2e6;
+    --main-text-color: #353430;
+    --block-title-color: var(--main-text-color);
+    --button-text-color: var(--main-text-color);
+    --link-color: var(--main-text-color);
+    --content-background-color: #fff1f7;
+    --header-text-color: var(--main-text-color);
+    --accent-border: 1px solid var(--main-text-color);
+  }
+
+  .header__rec {
+    color: transparent;
+  }
+
+  .header__rec::after {
+    color: transparent;
+    text-shadow: none;
+  }
+
+  .header__theme-menu-button:hover {
+    border: 1px solid rgb(53 52 48 / 0.5);
+  }
+}

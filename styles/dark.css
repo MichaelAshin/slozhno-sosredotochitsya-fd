@@ -14,3 +14,16 @@
   --content-background-color: #000028;
   --header-text-color: var(--content-background-color);
 }
+
+:root.theme-dark .header__rec {
+  color: var(--accent-color);
+}
+
+:root.theme-dark .header__rec::after {
+  color: #ff0070;
+  text-shadow: 0 0 4px var(--accent-color, #ff0070);
+}
+
+:root.theme-dark .header__theme-menu-button:hover {
+  border: 1px solid rgb(255 0 112 / 0.5);
+}

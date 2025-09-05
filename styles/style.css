@@ -7,8 +7,9 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   gap: 60px;
-  font-family: 'IBM Plex mono', sans-serif;
+  font-family: 'IBM Plex mono', monospace;
   background-image: var(--page-background-image);
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-color: var(--content-background-color, #000028);
@@ -37,8 +38,8 @@
 
 .header__theme-menu-list {
   display: flex;
+  gap: 10px;
   flex-direction: row;
-  inline-size: 230px;
   justify-content: space-between;
 }
 
@@ -47,6 +48,7 @@
   border: none;
   text-transform: lowercase;
   inline-size: 70px;
+  transition: all 0.5s ease-out;
 }
 
 .header__theme-menu-button:hover {
@@ -59,6 +61,7 @@
 }
 
 .header__theme-menu-button_active {
+  pointer-events: none;
   border: var(--accent-border, 1px solid var(--accent-color, #ff0070));
 }
 
@@ -69,7 +72,7 @@
   justify-self: end;
   vertical-align: middle;
   text-align: justify;
-  font-size: var(--base-font-size);
+  font-size: var(--base-font-size, 18px);
   line-height: 25px;
   font-weight: 400;
 }
@@ -80,8 +83,6 @@
   text-shadow: 0 0 4px var(--accent-color, #ff0070);
   font-size: 25px;
   line-height: 75%;
-  border-block-start: var(--accent-border, #ff0070);
-  border-inline-end: var(--accent-border, #ff0070);
   inline-size: 25px;
   block-size: 25px;
   text-align: center;
@@ -110,27 +111,54 @@
   grid-column: 1;
 }
 
-.header::after {
+.decorated-zone::before {
+  display: block;
   position: absolute;
   content: '';
-  border-block-end: var(--accent-border, 1px solid var(--accent-color, #ff0070));
-  border-inline-start: var(--accent-border, 1px solid var(--accent-color, #ff0070));
+  align-self: start;
+  justify-self: end;
+  border-block-start: var(
+    --accent-border,
+    1px solid var(--accent-color, #ff0070)
+  );
+  border-inline-end: var(
+    --accent-border,
+    1px solid var(--accent-color, #ff0070)
+  );
   inline-size: 25px;
   block-size: 25px;
-  grid-row: 3;
-  grid-column: 1;
+}
+
+.decorated-zone::after {
+  display: block;
+  position: absolute;
+  content: '';
+  border-block-end: var(
+    --accent-border,
+    1px solid var(--accent-color, #ff0070)
+  );
+  border-inline-start: var(
+    --accent-border,
+    1px solid var(--accent-color, #ff0070)
+  );
+  inline-size: 25px;
+  block-size: 25px;
   align-self: flex-end;
   justify-self: start;
 }
 
 /* Основной контент */
 
+.main {
+  display: grid;
+  gap: 60px;
+}
+
 .content {
   display: grid;
   grid-template-columns: 1fr;
   gap: 80px;
   padding: 0 20px;
-  background-color: var(--content-background-color, #000028);
 }
 
 .content-block {
@@ -160,13 +188,14 @@
   background-color: var(--accent-color, #ff0070);
   font-size: var(--base-font-size, 18px);
   color: var(--header-text-color, #000028);
+  line-height: 23.4px;
 }
 
 .content-block-item__text {
   padding-block-start: 10px;
   font-size: var(--base-font-size, 18px);
   font-weight: 400;
-  line-height: 23.44px;
+  line-height: 23.4px;
 }
 
 .what-decreases {
@@ -174,12 +203,8 @@
 }
 
 .what-decreases .content-block__title {
-  grid-column: 1;
+  grid-column: 1 / 4;
   grid-row: 1;
-}
-
-.what-decreases .content-block-item {
-  grid-row: 2;
 }
 
 .content-block-item .content-block-item {
@@ -194,6 +219,7 @@ h4.content-block-item__title {
   color: var(--link-color);
   text-decoration: none;
   text-shadow: 1px 1px var(--accent-color, #000028);
+  transition: all 0.5s ease-out;
 }
 
 .content__link:hover {
@@ -261,7 +287,6 @@ h4.content-block-item__title {
   align-content: center;
   position: relative;
   padding: 20px;
-  background-color: var(--content-background-color, #000028);
 }
 
 .footer .main-title {
@@ -270,37 +295,13 @@ h4.content-block-item__title {
   margin: 0;
 }
 
-.footer::before {
-  display: block;
-  position: absolute;
-  content: '';
-  align-self: start;
-  justify-self: end;
-  border-block-start: var(--accent-border, 1px solid var(--accent-color, #ff0070));
-  border-inline-end: var(--accent-border, 1px solid var(--accent-color, #ff0070));
-  inline-size: 25px;
-  block-size: 25px;
-}
-
-.footer::after {
-  display: block;
-  position: absolute;
-  content: '';
-  align-self: end;
-  justify-self: start;
-  border-block-end: var(--accent-border, 1px solid var(--accent-color, #ff0070));
-  border-inline-start: var(--accent-border, 1px solid var(--accent-color, #ff0070));
-  inline-size: 25px;
-  block-size: 25px;
-}
-
 /* Стили для лэптопа */
 
-@media (width <= 1024px) {
+@media (width < 1024px) {
   /* Заголовок */
 
   .header {
-    block-size: max(100vh, 768px);
+    block-size: max(100vh, 1024px);
   }
 
   .header__theme-menu {
@@ -314,8 +315,6 @@ h4.content-block-item__title {
 
   .header__theme-menu-list {
     flex-direction: column;
-    inline-size: auto;
-    block-size: 98px;
     align-content: space-between;
   }
 
@@ -327,6 +326,11 @@ h4.content-block-item__title {
 
   .content-block-item__text {
     padding-inline-end: 5px;
+  }
+
+  .why-is-difficult,
+  .how-to {
+    column-gap: 20px;
   }
 
   .what-decreases {
@@ -353,7 +357,7 @@ h4.content-block-item__title {
 
 /* Стили для смартфона */
 
-@media (width <= 768px) {
+@media (width < 768px) {
   /* Общие стили */
 
   .page {
@@ -367,9 +371,14 @@ h4.content-block-item__title {
     padding: 10px;
   }
 
+  .header__theme-menu-list {
+    gap: 11px;
+  }
+
   .main-title {
     margin: 0;
-    line-height: 90%;
+    line-height: 83%;
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   }
 
   .header__text {
@@ -378,15 +387,21 @@ h4.content-block-item__title {
 
   /* Основной контент */
 
+  .main {
+    gap: 40px;
+  }
+
   .content {
     gap: 50px;
-    padding: 0 15px 0 10px;
+    padding: 0 10px;
+    line-height: 23.4px;
   }
 
   .content-block {
     grid-template-columns: 1fr;
     column-gap: 10px;
-    row-gap: 20px;
+    row-gap: 19.5px;
+    line-height: 23.44px;
   }
 
   .what-decreases .content-block__title {
@@ -405,7 +420,7 @@ h4.content-block-item__title {
       'books'
       'street';
     gap: 10px;
-    padding: 10px 15px 0 10px;
+    padding: 10px 10px 0;
   }
 
   /* Подвал */
@@ -416,20 +431,11 @@ h4.content-block-item__title {
   }
 }
 
-/* Стили для светлой темы по умолчанию */
+/* Стили для устройств с шириной экрана менее 375px */
 
-@media (prefers-color-scheme: light) {
+@media (width < 375px) {
 
-  :root {
-    --page-background-image: url(../images/cover-image-light.png);
-    --accent-color: #ff8dcb;
-    --title-color: #ffc2e6;
-    --main-text-color: #353430;
-    --block-title-color: var(--main-text-color);
-    --button-text-color: var(--main-text-color);
-    --link-color: var(--main-text-color);
-    --content-background-color: #fff1f7;
-    --header-text-color: var(--main-text-color);
-    --accent-border: 1px solid var(--main-text-color);
+  .main-title {
+    font-size: clamp(0.0625rem, -1.0265rem + 34.8485vw, 7.25rem);
   }
 }
