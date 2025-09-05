@@ -205,6 +205,7 @@
 .what-decreases .content-block__title {
   grid-column: 1 / 4;
   grid-row: 1;
+  max-inline-size: 315px;
 }
 
 .content-block-item .content-block-item {
